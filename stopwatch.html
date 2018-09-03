@@ -9,46 +9,47 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-sm-2"> <img src="images.png" alt="watch" ></div>
-    <div class="col-sm-2"><h1 class="text-center">Stop watch</h1></div>
-  </div>
+      <div class="col-sm-2"> <img src="images.png" alt="watch"></div>
+      <div class="col-sm-2">
+        <h1 class="text-center">Stop watch</h1>
+      </div>
+    </div>
 
-        
-        <div class="row">
-        <div>
-          <div class="col-sm-4 ">.
-            <button onclick="sw.start()" class="btn btn-primary">start</button>
-          </div>
-          <div class="col-sm-4">
-            <button onclick="sw.stop()" value="this.duration" class="btn btn-success">stop</button>
-          </div>
-          <div class="col-sm-4">
-            <button onclick="sw.reset()" class="btn btn-warning">Reset</button>
-          </div>
+
+    <div class="row">
+      <div>
+        <div class="col-sm-4 ">.
+          <button onclick="sw.start()" class="btn btn-primary">start</button>
         </div>
+        <div class="col-sm-4">
+          <button onclick="sw.stop()" value="this.duration" class="btn btn-success">stop</button>
         </div>
-        <hr>
-        <div class="row"></div>
-        <div class="row">
-          <div class="alert alert-info col-sm-4">
-            <strong id="start"></strong>
-          </div>
-          <div class="alert alert-success col-sm-4">
-            <strong id="stop"></strong>
-          </div>
-          <div class="alert alert-warning col-sm-4">
-            <strong id="reset"></strong>
-          </div>
+        <div class="col-sm-4">
+          <button onclick="sw.reset()" class="btn btn-warning">Reset</button>
         </div>
-        <div class="alert alert-danger ">
-            <strong id="not"></strong>
-          </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row"></div>
+    <div class="row">
+      <div class="alert alert-info col-sm-4">
+        <strong id="start"></strong>
+      </div>
+      <div class="alert alert-success col-sm-4">
+        <strong id="stop"></strong>
+      </div>
+      <div class="alert alert-warning col-sm-4">
+        <strong id="reset"></strong>
+      </div>
+    </div>
+    <div class="alert alert-danger ">
+      <strong id="not"></strong>
+    </div>
   </div>
   <script>
     function StopWatch() {
@@ -69,34 +70,35 @@
         }
       }
       this.stop = function () {
-        if (!running){
+        if (!running) {
           document.getElementById('reset').innerText = " ";
           document.getElementById('not').innerText = "stop watch is not runing";
           throw new Error("stop watch is not runing");
-}else {document.getElementById('start').innerText = " ";
-        running = false;
-        endTime = new Date();
+        } else {
+          document.getElementById('start').innerText = " ";
+          running = false;
+          endTime = new Date();
 
-        seconds = (endTime.getTime() - startTime.getTime()) / 1000;
-        duration += seconds;
+          seconds = (endTime.getTime() - startTime.getTime()) / 1000;
+          duration += seconds;
 
-        document.getElementById('stop').innerText = `You Have taken ${duration} seconds`;
-      }
+          document.getElementById('stop').innerText = `You Have taken ${duration} seconds`;
+        }
       }
       this.reset = function () {
-      if(running || duration > 0 ){
-        duration = 0;
-        startTime = null;
-        endTime = null;
-        running = false;
-        document.getElementById('not').innerText = "";
-        document.getElementById('reset').innerText = "Let us restart";
-        document.getElementById('start').innerText = " ";
-        document.getElementById('stop').innerText = " ";
-}else {
-      document.getElementById('not').innerText = "stop watch is not runing";
+        if (running || duration > 0) {
+          duration = 0;
+          startTime = null;
+          endTime = null;
+          running = false;
+          document.getElementById('not').innerText = "";
+          document.getElementById('reset').innerText = "Let us restart";
+          document.getElementById('start').innerText = " ";
+          document.getElementById('stop').innerText = " ";
+        } else {
+          document.getElementById('not').innerText = "stop watch is not runing";
+        }
       }
-}
       Object.defineProperty(this, 'duration', {
         get: function () {
           return duration;
